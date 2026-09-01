@@ -8,7 +8,7 @@ const VCARD = [
   'ORG:Sun Nutrition',
   'TITLE:Health & Wellness Awareness Camp',
   'TEL;TYPE=WORK,VOICE:+917010183611',
-  'TEL;TYPE=WORK,VOICE:+919661271303',
+  'TEL;TYPE=WORK,VOICE:+919361271303',
   'ADR;TYPE=WORK:;;No 7 First Floor\\, Mandhai Karai\\, A. Kaspa\\, Auto Stand Opp.;Ambur;;635802;India',
   'NOTE:Health & Wellness Awareness Camp — nutrition coaching\\, weight management\\, lifestyle guidance and family wellness.',
   'URL:' + location.href,
@@ -85,6 +85,32 @@ if (car) {
     if (!step) return;
     e.preventDefault();
     car.scrollTo({ left: (index() + step) * car.clientWidth, behavior: 'smooth' });
+  });
+}
+
+// ── Image Zoom ───────────────────────────────────
+const tamilImage = document.querySelector('.tamil-image img');
+const zoomModal = document.getElementById('zoomModal');
+const zoomedImage = document.getElementById('zoomedImage');
+
+if (tamilImage && zoomModal && zoomedImage) {
+  tamilImage.addEventListener('click', () => {
+    zoomedImage.src = tamilImage.src;
+    zoomModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  zoomModal.addEventListener('click', () => {
+    zoomModal.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  // Close on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && zoomModal.classList.contains('active')) {
+      zoomModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
   });
 }
 
